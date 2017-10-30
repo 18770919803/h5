@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="browsermode" content="application">
+    <meta name="x5-page-mode" content="app">
+    <meta name="renderer" content="webkit">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <meta id="metaDescription" name="description" content="太仙昆明麻将抽奖环节">
+    <meta name="keywords" content="太仙昆明麻将，抽奖">
+    <title>太仙昆明麻将幸运大转盘抽奖活动</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="layer_mobile/need/layer.css" type="text/css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/awardRotate.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="layer_mobile/layer.js"></script>
+</head>
+
+<body>
+    <div class="content">
+        <!-- <div class="bg_title"><img src="images/title.png" alt="抽奖啦"></div> -->
+        <div class="rule">活动说明</div>
+        <audio id="ruleAudio">
+            <source src="music/btn.mp3"></source>
+            <source src="music/btn.ogg"></source>
+            你的浏览器不支持该音频！
+        </audio>
+        <div class="turntable-bg">
+            <div class="pointer" disabled='true'>
+                <audio id="pointerAudio">
+                    <source src="music/rotateBtn.mp3"></source>
+                    <source src="music/rotateBtn.ogg"></source>
+                    你的浏览器不支持该音频！
+                </audio>
+                <img src='images/pointer.png' alt='指针'></img>
+            </div>
+            <div>
+                <audio id="rotateAudio">
+                    <source src="music/rotateTurn.mp3"></source>
+                    <source src="music/rotateTurn.ogg"></source>
+                    你的浏览器不支持该音频！
+                </audio>
+                <canvas class="rotate" id="myCanvas" width="700" height="700">
+                    Your browser does not support the HTML5 canvas tag.</canvas>
+            </div>
+            <div class='turntable-bg2'>
+                <img src='images/turntable-bg2.png' alt='转盘小背景'></img>
+            </div>
+        </div>
+        <div class="award_data">
+            <p class="award_title">您还有<span style="color:#EAFF00" class="award_chance">0</span>次抽奖的机会</p>
+            <div class="award_people">
+                <div class="award_people_left">
+                    <p>中奖名单</p>
+                </div>
+                <div class="award_people_right" id="scrollBox">
+                    <ul id="con1">
+                    </ul>
+                    <ul id="con2"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="about_active" hidden>
+            <div class="left">
+                <h2>活动说明:</h2></div>
+            <div class="close"></div>
+            <div class="active_details">
+                <div>
+                    <p>一等奖 : 价值100元礼品&nbsp; 二等奖 : 价值50元礼品</p>
+                    <p>三等奖 : 价值10元礼品&nbsp; 三等奖 : 价值10元礼品&nbsp;</p>
+                    <p>三等奖 : 价值10元礼品&nbsp; 三等奖 : 价值10元礼品</p>
+                </div>
+                <div>
+                    <h4>活动时间</h4>
+                    <p>2017年6月21日 12:30 - 2017年8月28日 12:30</p>
+                </div>
+                <div>
+                    <h4>主办单位</h4>
+                    <p>本次活动主办单位为 -太仙昆明麻将</p>
+                </div>
+                <div>
+                    <h4>技术支持</h4>
+                    <p>页面技术由 <strong>乐开游</strong> 提供，技术支持方仅提供页面技术，不承担由活动引起的相关法律责任</p>
+                </div>
+                <div>
+                    <h4>活动规则及兑奖说明</h4>
+                    <p>每人每日玩太仙昆明麻将每20局一次抽奖机会，多打多机会，机会次数没有上限，多打多得。虚拟奖品直接发放到游戏内，红包现发，超大实物，请记得填写好自己的联系方式及地址。
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- 抽奖弹框 -->
+        <div class="dialog" id="Dialog1" style="opacity: 1;display:none">
+            <div class="award_bg"></div>
+            <div class="weui-mask">
+            </div>
+            <!-- <div class="close"></div> -->
+            <div class="weui-dialog ">
+                <audio id="dialogAudioNull">
+                    <source src="music/awardNull.mp3"></source>
+                    <source src="music/awardNull.ogg"></source>
+                    你的浏览器不支持该音频！
+                </audio>
+                <audio id="dialogAudioWin">
+                    <source src="music/awardWin.mp3"></source>
+                    <source src="music/awardWin.ogg"></source>
+                    你的浏览器不支持该音频！
+                </audio>
+                <audio id="dialogAudioAgain">
+                    <source src="music/syAgain.mp3"></source>
+                    <source src="music/syAgain.ogg"></source>
+                    你的浏览器不支持该音频！
+                </audio>
+                <div class="weui-dialog__hd"></div>
+                <div class="weui-dialog__bd9">
+                    <div class="weui-dialog__bd" id="weui-dialog__bd">
+                        <img src="" alt="">
+                    </div>
+                </div>
+                <div class="page__bd page__bd_spacing">
+                    <br>
+                    <!-- <p style="color:#aaa">注意：实体奖品需要留下真实姓名、联系方式、邮寄地址，太仙麻将的工作人员将在15个工作日之内和您联系。</p> -->
+                </div>
+            </div>
+            <div class="weui-dialog swlj" hidden>
+
+                <div class='yj_address'>
+                    <h2 >信息填写</h2>
+                    <div class="msg">
+                        <label for="name">姓名：</label>
+                        <input type="text" placeholder="真实姓名" name="name" id="name">
+                        <div class="yz">
+                            <span class="yz_right">✔</span>
+                            <span class="yz_wrong">✘</span>
+                        </div>
+                    </div>
+                    <div class="msg">
+                        <label for="phone">电话：</label>
+                        <input type="tel" placeholder="联系方式" name="phone" id="phone">
+                        <div class="yz">
+                            <span class="yz_right">✔</span>
+                            <span class="yz_wrong">✘</span>
+                        </div>
+                    </div>
+                    <div class="msg">
+                        <label for="adress">住址：</label>
+                        <input type="text" placeholder="有效地址" name="adress" id="adress">
+                        <div class="yz">
+                            <span class="yz_right">✔</span>
+                            <span class="yz_wrong">✘</span>
+                        </div>
+                    </div>
+                    <p>
+                        <input type="button" class="weui-btn weui-btn_primary" onclick="config1.submit()" value="提交">
+                    </p>
+                    <p style="color:red">注意：实体奖品需要留下真实姓名、联系方式、邮寄地址，太仙麻将的工作人员将在15个工作日之内和您联系。</p>
+                </div>
+            </div>
+        </div>
+        <div class="dialog" id="Dialog2" style="opacity: 1;display: none">
+            <div class="award_bg"></div>
+            <div class="weui-mask">
+            </div>
+            <div class="weui-dialog">
+                <div class="weui-dialog__bd">
+                    <img src="" alt="">
+                </div>
+                <div class="page__bd page__bd_spacing">
+                    <input type="button" class="close_btn weui-btn weui-btn_primary" value="确定">
+                    <br>
+                    <!-- -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div hidden id='bb'></div>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/diolog.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+  // 暂时无效
+  wx.config({
+      debug: false,
+      appId: 'wx907f3ba3be862b74',
+      timestamp: 1500859670,
+      nonceStr: '',
+      signature: '',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo',
+        'onMenuShareQZone'
+      ]
+  });
+</script>
+</body>
+
+</html>

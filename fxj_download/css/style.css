@@ -1,0 +1,260 @@
+html,
+body,
+div,
+span,
+a,
+{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+html {
+    font-size: 12px;
+overflow: hidden;
+    color: #fff;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+html>body {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -100;
+    margin:0;
+   overflow: hidden;
+    background-color: transparent;
+}
+/*横屏*/
+body.landscape:before
+{
+    font-size: 1.375rem;
+
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    padding-top: 15%;
+
+    content: '为了更好的体验，请使用竖屏浏览';
+    text-align: center;
+    letter-spacing: 1px;
+
+    color: #eee;
+    background-color: rgba(205,29,40,1);
+}
+body.landscape:after
+{
+    position: absolute;
+    z-index: 10000;
+    top: 30%;
+    right: 0;
+    left: 0;
+
+    width: 4.625rem;
+    height: 6.875rem;
+    margin: auto;
+
+    content: '';
+    -webkit-transform: rotate(-90deg);
+       -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+         -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    -webkit-animation: tablet 1.6s ease-out infinite alternate;
+       -moz-animation: tablet 1.6s ease-out infinite alternate;
+        -ms-animation: tablet 1.6s ease-out infinite alternate;
+         -o-animation: tablet 1.6s ease-out infinite alternate;
+            animation: tablet 1.6s ease-out infinite alternate;
+
+    background: url(../img/rotate.png) 0 0 no-repeat;
+    background-size: 100%;
+}
+@-webkit-keyframes tablet
+{
+    0%
+    {
+        -webkit-transform: rotate(-90deg);
+    }
+
+    100%
+    {
+        -webkit-transform: rotate(-90deg);
+    }
+}
+
+@-moz-keyframes tablet
+{
+    0%
+    {
+        -moz-transform: rotate(-90deg);
+    }
+
+    100%
+    {
+        -moz-transform: rotate(90deg);
+    }
+}
+
+@keyframes tablet
+{
+    0%
+    {
+        transform: rotate(-90deg);
+    }
+    100%
+    {
+        transform: rotate(90deg);
+    }
+}
+.main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+     background: url('../img/bg.jpg') no-repeat;
+    background-size: cover;
+     z-index: -1;
+    box-sizing: border-box;
+    top:0;
+    left: 0;
+    overflow: hidden;
+}
+.main>.btn {
+    width: 14.7rem;
+    height: 6rem;
+    margin: 0 auto;
+    margin-top: 350px;
+}
+
+.main>.agentLJ {
+    display: block;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 18px;
+    color:#fff;
+    background-color: #235f0e;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.agentLJ>.agentAni{
+    display: inline-block;
+      -webkit-animation: start 1.5s infinite ease-in-out;
+        -moz-animation: start 1.5s infinite ease-in-out;
+        -ms-animation: start 1.5s infinite ease-in-out;
+        -o-animation: start 1.5s infinite ease-in-out;
+        animation: start 1.5s infinite ease-in-out;
+}
+
+@-webkit-keyframes start {
+      0%,
+        30% {
+            transform: translate(-10px, 0);
+            opacity: 0;
+        }
+        60% {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(8px, 0);
+            opacity: 0;
+        }
+    }
+    @-moz-keyframes start {
+      0%,
+        30% {
+            transform: translate(-10px, 0);
+            opacity: 0;
+        }
+        60% {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(8px, 0);
+            opacity: 0;
+        }
+    }
+@keyframes start {
+        0%,
+        30% {
+            transform: translate(-10px, 0);
+            opacity: 0;
+        }
+        60% {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+        100% {
+            transform: translate(8px, 0);
+            opacity: 0;
+        }
+    }
+@media  screen and ( min-width: 320px){
+.main>.btn {
+    margin-top: 285px;
+}
+@media  screen and ( min-width: 360px){
+.main>.btn {
+    margin-top: 330px;
+}
+@media  screen and ( min-width: 375px){
+.main>.btn {
+    margin-top: 340px;
+}
+@media  screen and ( min-width: 412px){
+.main>.btn {
+    margin-top: 380px;
+}
+@media  screen and ( min-width: 414px){
+.main>.btn {
+    margin-top: 380px;
+}
+}
+@media  screen and ( min-width: 435px){
+.main>.btn {
+    margin-top: 410px;
+}
+}
+@media  screen and ( min-width: 600px){
+.main>.btn {
+    margin-top: 550px;
+}
+}
+@media  screen and ( min-width: 768px){
+.main>.btn {
+    margin-top: 650px;
+}
+}
+@media  screen and ( min-width: 800px)
+{
+    .main > .btn
+    {
+        margin-top: 700px;
+    }
+}
+@media  screen and ( min-width: 1000px)
+{
+    .main > .btn
+    {
+        margin-top: 900px;
+    }
+}
